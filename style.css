@@ -1,0 +1,19 @@
+table{
+    display: inline-table;
+    border-collapse: collapse;
+}
+
+th, td, table{
+    border: 1px solid #888;
+    padding: 10px;
+}
+
+th{
+    color: white;
+    background-color: black;
+    text-align: left;
+}
+
+#number, #totalCost, #total{
+    text-align: right;
+}
