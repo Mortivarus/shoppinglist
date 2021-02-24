@@ -11,7 +11,7 @@ const totalCost = document.getElementById("totalCost")
 const productTotalCostArray = []
 
 
-//Function loops over all subtotal elements, importing values from HTML, calculating the cost and places this both in the HTML table as well as an array for total cost calculation 
+//Function loops over all subtotal elements, importing quantity and price values from HTML, calculating the cost and places this both in the HTML table as well as an array for total cost calculation 
 const calculateCost = function(){
     for (let index = 0; index < productTotalCost.length; index++) {
         const price = parseFloat(productPrice[index].innerHTML);
