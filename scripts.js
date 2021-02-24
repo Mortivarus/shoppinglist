@@ -1,42 +1,35 @@
-// console.log()
-// console.log(document.getElementsByClassName("productQuantity"))
-
-
-
+//Shorten the necessary variables
 const productPrice = document.getElementsByClassName("productPrice")
 
 const productQuantity = document.getElementsByClassName("productQuantity")
 
 const productTotalCost = document.getElementsByClassName("productTotalCost")
 
+const totalCost = document.getElementById("totalCost")
+
+//Add an empty array for the calculated subtotals
 const productTotalCostArray = []
 
-// for (let index = 0; index < productPrice.length; index++) {
-//     const element = productPrice[index];
-//     productPriceArray.push(parseFloat(element.innerHTML))
-// }
 
-// for (let index = 0; index < productQuantity.length; index++) {
-//     const element = productQuantity[index];
-//     productQuantityArray.push(element.value)
-// }
-
-// for (let index = 0; index < productTotalCost.length; index++) {
-//     const cost = productTotalCost[index];
-//     const price = productQuantityArray[index]
-
-    
-// }
-
-
-for (let index = 0; index < productTotalCost.length; index++) {
-    const price = parseFloat(productPrice[index].innerHTML);
-    console.log(price)
-    const quantity = productQuantity[index].value
-    console.log(quantity)
-    const totalCost = price*quantity
-    productTotalCostArray.push(totalCost)
-    
+//Function loops over all subtotal elements, importing values from HTML, calculating the cost and places this both in the HTML table as well as an array for total cost calculation 
+const calculateCost = function(){
+    for (let index = 0; index < productTotalCost.length; index++) {
+        const price = parseFloat(productPrice[index].innerHTML);
+        const quantity = productQuantity[index].value
+        const cost = price*quantity
+        productTotalCostArray[index] = cost
+        productTotalCost[index].innerHTML = cost.toFixed(2)
+    }
+    totalCost.innerHTML = productTotalCostArray.reduce((a, b) => { return a + b}, 0).toFixed(2) //Calculate the total cost by summarising the subtotals array
 }
 
-console.log(productTotalCostArray)
+
+document.querySelectorAll('.productQuantity').forEach(quantity => //Loops over all elements of the quantity class and updates the subtotals and total with each quantity change
+    quantity.addEventListener('input', () => {
+        calculateCost()
+    }
+))
+
+
+
+
